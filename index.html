@@ -86,9 +86,16 @@
       }, delay);
     });
 
-    const selectAndCopyInput = () => new Promise((resolve) => {  
-      logMessage(`Select field, then run document.execCommand('copy')`, true);
+    const selectInput = () => new Promise((resolve) => {  
+      logMessage(`Select field`, true);
       $input.select();
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+
+    const copyInput = () => new Promise((resolve) => {  
+      logMessage(`Run document.execCommand('copy')`, true);
       document.execCommand('copy');
       resolve();
     });
@@ -96,7 +103,8 @@
     function copyWithExecCommand() {
       generateRandomNumber()
         .then(writeToInput)
-        .then(selectAndCopyInput)
+        .then(selectInput)
+        .then(copyInput)
         .catch(err => console.log(err.message))
     }
 
