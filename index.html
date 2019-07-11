@@ -28,6 +28,31 @@
 
     #contents { color: green; }
   </style>
+</head>
+<body>
+  <h2>Copy and paste with document.execCommand()</h2>
+  <hr>
+  <h2 id="contents">Current clipboard contents: []</h2>
+  <hr>
+  <div class="content">
+    <div class="left">
+      <button onclick="copyWithExecCommand()">COPY</button>
+      <input id="value" type="text" />
+    </div>
+    <div class="right">
+      <div id="message"></div>
+    </div>
+  </div>
+  <hr>
+  <button onclick="show()">Show Javascript</button>
+  <pre>
+    const randomNumber = Math.random();
+    const $input = document.getElementById('value');
+    $input.value = randomNumber;
+    $input.select();
+    document.execCommand('copy');
+    nextThing();
+  </pre>
   <script>
     const $input = document.getElementById('value');
     const $content = document.getElementById('content');
@@ -92,30 +117,5 @@
     }
     emptyClipboard();
   </script>
-</head>
-<body>
-  <h2>Copy and paste with document.execCommand()</h2>
-  <hr>
-  <h2 id="contents">Current clipboard contents: []</h2>
-  <hr>
-  <div class="content">
-    <div class="left">
-      <button onclick="copyWithExecCommand()">COPY</button>
-      <input id="value" type="text" />
-    </div>
-    <div class="right">
-      <div id="message"></div>
-    </div>
-  </div>
-  <hr>
-  <button onclick="show()">Show Javascript</button>
-  <pre>
-    const randomNumber = Math.random();
-    const $input = document.getElementById('value');
-    $input.value = randomNumber;
-    $input.select();
-    document.execCommand('copy');
-    nextThing();
-  </pre>
 </body>
 </html>
