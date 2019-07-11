@@ -17,7 +17,18 @@
 
     .content { display: grid; grid-template-columns: 200px 1fr; }
 
-    pre { visibility: hidden; }
+    pre {
+      overflow-x: auto;
+      white-space: pre-wrap;
+      white-space: -moz-pre-wrap;
+      white-space: -pre-wrap;
+      white-space: -o-pre-wrap;
+      word-wrap: break-word;
+      text-indent: -1.2em;
+      padding-left: 1.2em;
+    }
+
+    #code { display: none; }
 
     #message {
       font-size: 24px;
@@ -60,23 +71,23 @@
   </div>
   <hr>
   <button onclick="show()">Show Javascript</button>
-  <pre>
-    const randomNumber = Math.random();
-    const $input = document.getElementById('value');
-    $input.value = randomNumber;
-    $input.select();
-    document.execCommand('copy');
-    nextThing();
-  </pre>
+  <div id="code">
+    <pre>const randomNumber = Math.random();</pre>
+    <pre>const $input = document.getElementById('value');</pre>
+    <pre>$input.value = randomNumber;</pre>
+    <pre>$input.select();</pre>
+    <pre>document.execCommand('copy');</pre>
+    <pre>nextThing();</pre>
+  </div>
   <script>
     const $input = document.getElementById('value');
     const $content = document.getElementById('content');
     const $contents = document.getElementById('contents');
-    const $pre = document.querySelector('pre');
+    const $code = document.getElementById('code');
     const delay = 2000;
 
     function show() {
-      $pre.style.visibility = 'visible';
+      $code.style.display = 'block';
     }
 
     function logMessage(message, isAppend) {
