@@ -1,0 +1,110 @@
+<head>
+  <style>
+    body { font-family: sans-serif; font-size: 24px; }
+
+    button, input { line-height: 40px; font-size: 24px; text-align: center; }
+
+    input { width: 100px; }
+
+    .content { display: grid; grid-template-columns: 200px 1fr; }
+
+    pre { visibility: hidden; }
+
+    #message {
+      font-size: 24px;
+      line-height: 40px;
+      font-weight: bold;
+      color: brown;
+    }
+
+    #contents { color: green; }
+  </style>
+  <script>
+    const $input = document.getElementById('value');
+    const $content = document.getElementById('content');
+    const $contents = document.getElementById('contents');
+    const $pre = document.querySelector('pre');
+    const delay = 2000;
+
+    function show() {
+      $pre.style.visibility = 'visible';
+    }
+
+    function logMessage(message, isAppend) {
+      document.getElementById('message').innerText = isAppend
+        ? document.getElementById('message').innerText + '\n' + message
+        : message;
+    }
+
+    const generateRandomNumber = () => new Promise((resolve) => {
+      const randomNumber = Math.floor(Math.random() * 10000);
+      logMessage(`Generating a random number: ${randomNumber}`);
+      setTimeout(() => {
+        resolve(randomNumber);
+      }, delay);
+    });
+
+    const writeToInput = (randomNumber) => new Promise((resolve) => {  
+      logMessage(`Insert in input field`, true);
+      $input.value = randomNumber;
+      setTimeout(() => {
+        resolve();
+      }, delay);
+    });
+
+    const selectAndCopyInput = () => new Promise((resolve) => {  
+      logMessage(`Select field, then run document.execCommand('copy')`, true);
+      $input.select();
+      document.execCommand('copy');
+      resolve();
+    });
+
+    function copyWithExecCommand() {
+      generateRandomNumber()
+        .then(writeToInput)
+        .then(selectAndCopyInput)
+        .catch(err => console.log(err.message))
+    }
+
+    function showClipboardContents() {
+      navigator.clipboard.readText()
+        .then((text) => $contents.textContent = `Current clipboard contents: [${text}]`)
+        .catch((err) => $contents.textContent = err.message)
+        .then(() => {
+          setTimeout(() => {
+            showClipboardContents();
+          }, 200);
+        });
+    }
+    function emptyClipboard() {
+      navigator.clipboard.writeText("")
+        .then(() => showClipboardContents())
+        .catch((err) => $contents.textContent = err.message);
+    }
+    emptyClipboard();
+  </script>
+</head>
+
+<h2>Copy and paste with document.execCommand()</h2>
+<hr>
+<h2 id="contents">Current clipboard contents: []</h2>
+<hr>
+<div class="content">
+  <div class="left">
+    <button onclick="copyWithExecCommand()">COPY</button>
+    <input id="value" type="text" />
+  </div>
+  <div class="right">
+    <div id="message"></div>
+  </div>
+</div>
+<hr>
+<button onclick="show()">Show Javascript</button>
+<pre>
+  const randomNumber = Math.random();
+  const $input = document.getElementById('value');
+  $input.value = randomNumber;
+  $input.select();
+  document.execCommand('copy');
+  nextThing();
+</pre>
