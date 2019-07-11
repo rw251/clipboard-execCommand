@@ -13,7 +13,7 @@
 
     button, input { line-height: 40px; font-size: 24px; text-align: center; }
 
-    h2 { font-size: min( 4vw, 32px ) }
+    h2 { font-size: 32px }
 
     input { width: 100px; }
 
@@ -40,6 +40,11 @@
     }
 
     #contents { color: green; }
+    @media (max-width: 800px)  {
+      h2 {
+        font-size: 4vw;
+      }
+    }
 
     @media (max-width: 660px)  {
       #message {
