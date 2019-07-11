@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Clipboard using document.execCommand()</title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta name="theme-color" content="#fafafa">
 
   <style>
@@ -27,6 +27,21 @@
     }
 
     #contents { color: green; }
+
+    @media (max-width: 660px)  {
+      #message {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 520px)  {
+      .content {
+        display: block;
+      }
+      body {
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
 <body>

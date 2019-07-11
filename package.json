@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start": "serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rw251/clipboard-execCommand.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://rw251.github.io/clipboard-execCommand",
+  "devDependencies": {
+    "serve": "^11.1.0"
+  }
+}
