@@ -1,4 +1,13 @@
+<!doctype html>
+<html lang="en">
+
 <head>
+  <meta charset="utf-8">
+  <title>Clipboard using document.execCommand()</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fafafa">
+
   <style>
     body { font-family: sans-serif; font-size: 24px; }
 
@@ -84,27 +93,29 @@
     emptyClipboard();
   </script>
 </head>
-
-<h2>Copy and paste with document.execCommand()</h2>
-<hr>
-<h2 id="contents">Current clipboard contents: []</h2>
-<hr>
-<div class="content">
-  <div class="left">
-    <button onclick="copyWithExecCommand()">COPY</button>
-    <input id="value" type="text" />
+<body>
+  <h2>Copy and paste with document.execCommand()</h2>
+  <hr>
+  <h2 id="contents">Current clipboard contents: []</h2>
+  <hr>
+  <div class="content">
+    <div class="left">
+      <button onclick="copyWithExecCommand()">COPY</button>
+      <input id="value" type="text" />
+    </div>
+    <div class="right">
+      <div id="message"></div>
+    </div>
   </div>
-  <div class="right">
-    <div id="message"></div>
-  </div>
-</div>
-<hr>
-<button onclick="show()">Show Javascript</button>
-<pre>
-  const randomNumber = Math.random();
-  const $input = document.getElementById('value');
-  $input.value = randomNumber;
-  $input.select();
-  document.execCommand('copy');
-  nextThing();
-</pre>
+  <hr>
+  <button onclick="show()">Show Javascript</button>
+  <pre>
+    const randomNumber = Math.random();
+    const $input = document.getElementById('value');
+    $input.value = randomNumber;
+    $input.select();
+    document.execCommand('copy');
+    nextThing();
+  </pre>
+</body>
+</html>
